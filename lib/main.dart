@@ -1,4 +1,5 @@
 import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
+import 'package:explosive_harry_potter/caracteristicas/vistas/vista_principal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,10 +30,15 @@ class SelectorVista extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Harry Potter API"),),
-        body: Builder(builder: (context){
-          return const Center(child: Text("No implementado..."),);
+      home: Builder(
+        builder: ((context) {
+          var estado = context.watch<BlocPotter>().state;
+          if(estado is VerPaginaPrincipal){
+            return const PaginaPrincipal();
+          }
+          return const Scaffold(
+            body: Center(child: Text("No implementado...")),
+          );
         }),
       ),
     );
