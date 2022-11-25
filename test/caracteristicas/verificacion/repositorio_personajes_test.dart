@@ -71,23 +71,32 @@ void main() {
   JsonDecoder decoder = const JsonDecoder();
 
   final jsonObject = decoder.convert(pruebaDosPersonajes);
-  test("El repositorio regresa set de personajes", () {
-    RepositorioPersonajes repo = RepositorioPersonajesReal();
-    var x = repo.obtenerPersonajes(jsonObject);
-    expect(x.isRight(), true);
-  });
-  test("El repositorio da dos personajes", () {
-    RepositorioPersonajes repo = RepositorioPersonajesReal();
-    var x = repo.obtenerPersonajes(jsonObject);
-    x.match((l) => null, (r) {
-      expect(r.length, 2);
+  group("Pruebas para personajes", () {
+    test("El repositorio regresa set de personajes", () {
+      RepositorioPersonajes repo = RepositorioPersonajesReal();
+      var x = repo.obtenerPersonajes(jsonObject);
+      expect(x.isRight(), true);
+    });
+    test("El repositorio da dos personajes", () {
+      RepositorioPersonajes repo = RepositorioPersonajesReal();
+      var x = repo.obtenerPersonajes(jsonObject);
+      x.match((l) => null, (r) {
+        expect(r.length, 2);
+      });
+    });
+    test("Puedo acceder a la informacion de cada personaje", () {
+      RepositorioPersonajes repo = RepositorioPersonajesReal();
+      var x = repo.obtenerPersonajes(jsonObject);
+      x.match((l) => null, (r) {
+        expect(r.last.nombre, equals("Hermione Granger"));
+      });
     });
   });
-  test("Puedo acceder a la informacion de cada personaje", () {
-    RepositorioPersonajes repo = RepositorioPersonajesReal();
-    var x = repo.obtenerPersonajes(jsonObject);
-    x.match((l) => null, (r) {
-      expect(r.last.nombre, equals("Hermione Granger"));
+  group("Pruebas para varitas", () {
+    test("Hay varitas", () {
+      RepositorioPersonajes repo = RepositorioPersonajesReal();
+      var x = repo.obtenerVaritas(jsonObject);
+      expect(x.isRight(), true);
     });
   });
 }
