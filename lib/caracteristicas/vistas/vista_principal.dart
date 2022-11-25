@@ -11,51 +11,34 @@ class PaginaPrincipal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Explosive Harry Potter"),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  width: 500,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Usuario',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5
-                ),
-                TextButton(onPressed: () {}, child: const Text("Buscar"))
-              ],
-            ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             const Text("Buscar por categoría..."),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: (){}, child: const Text("Hechizos")),
+                TextButton(onPressed: () {}, child: const Text("Hechizos")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: (){}, child: const Text("Profesores")),
+                TextButton(onPressed: () {}, child: const Text("Profesores")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: (){}, child: const Text("Alumnos")),
+                TextButton(onPressed: () {}, child: const Text("Alumnos")),
+                const SizedBox(width: 5),
+                TextButton(onPressed: () {}, child: const Text("Varitas")),
               ],
             ),
             const SizedBox(height: 10),
-            const Text("Buscar por casa..."),
+            const Text("Buscar personajes por casa..."),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: (){}, child: const Text("Griffindor")),
+                TextButton(onPressed: () {}, child: const Text("Griffindor")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: (){}, child: const Text("Slytherin")),
+                TextButton(onPressed: () {}, child: const Text("Slytherin")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: (){}, child: const Text("Hufflepuff")),
+                TextButton(onPressed: () {}, child: const Text("Hufflepuff")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: (){}, child: const Text("Ravenclaw")),
+                TextButton(onPressed: () {}, child: const Text("Ravenclaw")),
               ],
             ),
           ],

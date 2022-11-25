@@ -1,0 +1,21 @@
+class RegistroPersonaje {
+  late final nombre;
+  late final nombreAlternativo;
+  late final especie;
+  late final genero;
+  late final casa;
+  late final fechaDeNacimiento;
+  late final anoNacimiento;
+  late final esMago;
+  late final linaje;
+  late final colorOjos;
+  late final colorCabello;
+  late final varita;
+  late final patronus;
+  late final esEstudiante;
+  late final esStaff;
+  late final actor;
+  late final actoresAlternativos;
+  late final estaVivo;
+  late final imagen;
+}
