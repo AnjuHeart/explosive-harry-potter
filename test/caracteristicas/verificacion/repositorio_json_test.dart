@@ -7,10 +7,32 @@ void main() {
     var x = await repo.obtenerJsonPersonajes();
     expect(x.isRight(), true);
   });
-  test("Puedo acceder al primer valor", () async {
-    RepositorioJson repo = RepositorioJsonReal();
-    var x = await repo.obtenerJsonPersonajes();
-    var y = x.getOrElse((l) => null);
-    expect(y[0]["name"] == "Harry Potter", true);
+  group("Pruebas para personajes", () {
+    test("Puedo acceder al primer valor", () async {
+      RepositorioJson repo = RepositorioJsonReal();
+      var x = await repo.obtenerJsonPersonajes();
+      var y = x.getOrElse((l) => null);
+      expect(y[0]["name"] == "Harry Potter", true);
+    });
+    test("Hay un total de 403 personajes", () async {
+      RepositorioJson repo = RepositorioJsonReal();
+      var x = await repo.obtenerJsonPersonajes();
+      var y = x.getOrElse((l) => null);
+      expect(y.length, equals(403));
+    });
+  });
+  group("Pruebas para hechizos", () {
+    test("Puedo acceder al primer hechizo", () async {
+      RepositorioJson repo = RepositorioJsonReal();
+      var x = await repo.obtenerJsonHechizos();
+      var y = x.getOrElse((l) => null);
+      expect(y[0]["name"] == "Aberto", true);
+    });
+    test("Hay un total de 77 hechizos", () async {
+      RepositorioJson repo = RepositorioJsonReal();
+      var x = await repo.obtenerJsonHechizos();
+      var y = x.getOrElse((l) => null);
+      expect(y.length, equals(77));
+    });
   });
 }
