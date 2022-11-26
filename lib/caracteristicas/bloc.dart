@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
+import 'package:explosive_harry_potter/caracteristicas/verificacion/repositorio_hechizos.dart';
+import 'package:explosive_harry_potter/caracteristicas/verificacion/repositorio_personajes.dart';
+import 'package:explosive_harry_potter/dominio/registro_hechizos.dart';
+import 'package:explosive_harry_potter/dominio/registro_varitas.dart';
 import 'package:fpdart/fpdart.dart';
 
 import 'package:explosive_harry_potter/caracteristicas/verificacion/repositorio_json.dart';
@@ -21,11 +25,23 @@ class VerListaPeronajes extends Estado {
   });
 }
 
-class VerHechizos extends Estado {}
+class VerHechizos extends Estado {
+  final Set<Hechizo> hechizos;
 
-class VerVaritas extends Estado {}
+  VerHechizos({required this.hechizos});
+}
+
+class VerVaritas extends Estado {
+  final Set<Varita> varitas;
+
+  VerVaritas({required this.varitas});
+}
 
 class ErrorAlCargarJson extends Estado {}
+
+class ErrorAlFormarPersonajes extends Estado {}
+
+class ErrorAlFormarHechizos extends Estado {}
 
 class Evento {}
 
@@ -50,6 +66,8 @@ class SolicitarVaritas extends Evento {}
 class BlocPotter extends Bloc<Evento, Estado> {
   BlocPotter() : super(Creandose()) {
     RepositorioJson repositorioJson = RepositorioJsonReal();
+    RepositorioPersonajes repositorioPersonajes = RepositorioPersonajesReal();
+    RepositorioHechizos repositorioHechizos = RepositorioHechizosReal();
     late Either<Problema, dynamic> respuestaPersonajes;
     late Either<Problema, dynamic> respuestaHechizos;
     late dynamic jsonPersonajes;
@@ -62,6 +80,37 @@ class BlocPotter extends Bloc<Evento, Estado> {
       jsonHechizos =
           respuestaHechizos.getOrElse((l) => emit(ErrorAlCargarJson()));
       emit(VerPaginaPrincipal());
+    });
+
+    on<SolicitarTodosPersonajes>((event, emit) {
+      Either<Problema, Set<Personaje>> personajes =
+          repositorioPersonajes.obtenerPersonajes(jsonPersonajes);
+      personajes.match((l) {
+        emit(ErrorAlFormarPersonajes());
+      }, (r) {
+        emit(VerListaPeronajes(
+            tipoPeronaje: "Todos los Personajes", personajes: r));
+      });
+    });
+
+    on<SolicitarHechizos>((event, emit) {
+      Either<Problema, Set<Hechizo>> hechizos =
+          repositorioHechizos.obtenerHechizos(jsonHechizos);
+      hechizos.match((l) {
+        emit(ErrorAlFormarHechizos());
+      }, (r) {
+        emit(VerHechizos(hechizos: r));
+      });
+    });
+
+    on<SolicitarVaritas>((event, emit) {
+      Either<Problema, Set<Varita>> varitas =
+          repositorioPersonajes.obtenerVaritas(jsonPersonajes);
+      varitas.match((l) {
+        emit(ErrorAlFormarPersonajes());
+      }, (r) {
+        emit(VerVaritas(varitas: r));
+      });
     });
   }
 }
