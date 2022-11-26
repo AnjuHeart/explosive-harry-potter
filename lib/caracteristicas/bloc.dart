@@ -112,5 +112,31 @@ class BlocPotter extends Bloc<Evento, Estado> {
         emit(VerVaritas(varitas: r));
       });
     });
+
+    on<SolicitarAlumnos>((event, emit) {
+      Either<Problema, Set<Personaje>> personajes =
+          repositorioPersonajes.obtenerPersonajes(jsonPersonajes);
+      personajes.match((l) {
+        emit(ErrorAlFormarPersonajes());
+      }, (r) {
+        Iterable<Personaje> alumnos =
+            r.where((personaje) => personaje.esEstudiante == true);
+        emit(VerListaPeronajes(
+            tipoPeronaje: "Alumnos de Hogwarts", personajes: alumnos.toSet()));
+      });
+    });
+
+    on<SolicitarStaff>((event, emit) {
+      Either<Problema, Set<Personaje>> personajes =
+          repositorioPersonajes.obtenerPersonajes(jsonPersonajes);
+      personajes.match((l) {
+        emit(ErrorAlFormarPersonajes());
+      }, (r) {
+        Iterable<Personaje> staff =
+            r.where((personaje) => personaje.esStaff == true);
+        emit(VerListaPeronajes(
+            tipoPeronaje: "Staff de Hogwarts", personajes: staff.toSet()));
+      });
+    });
   }
 }
