@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:explosive_harry_potter/caracteristicas/verificacion/repositorio_personajes.dart';
-import 'package:explosive_harry_potter/dominio/problemas.dart';
-import 'package:explosive_harry_potter/dominio/registro_personajes.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:test/test.dart';
 
 void main() {

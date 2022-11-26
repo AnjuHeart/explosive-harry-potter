@@ -138,5 +138,19 @@ class BlocPotter extends Bloc<Evento, Estado> {
             tipoPeronaje: "Staff de Hogwarts", personajes: staff.toSet()));
       });
     });
+
+    on<SolicitarPersonajesPorCasa>((event, emit) {
+      Either<Problema, Set<Personaje>> personajes =
+          repositorioPersonajes.obtenerPersonajes(jsonPersonajes);
+      personajes.match((l) {
+        emit(ErrorAlFormarPersonajes());
+      }, (r) {
+        Iterable<Personaje> personajesDeCasa =
+            r.where((personaje) => personaje.casa == event.casa);
+        emit(VerListaPeronajes(
+            tipoPeronaje: "Personajes de casa ${event.casa}",
+            personajes: personajesDeCasa.toSet()));
+      });
+    });
   }
 }
