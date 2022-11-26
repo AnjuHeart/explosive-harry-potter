@@ -7,8 +7,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  String pruebaDosPersonajes =
-      """[
+  String pruebaDosPersonajes = """[
 {
       "name":"Harry Potter",
       "alternate_names":[
@@ -53,8 +52,8 @@ void main() {
       "eyeColour":"brown",
       "hairColour":"brown",
       "wand":{
-         "wood":"vine",
-         "core":"dragon heartstring",
+         "wood":"",
+         "core":"",
          "length":null
       },
       "patronus":"otter",
@@ -97,6 +96,14 @@ void main() {
       RepositorioPersonajes repo = RepositorioPersonajesReal();
       var x = repo.obtenerVaritas(jsonObject);
       expect(x.isRight(), true);
+    });
+
+    test("Hay una varita", () {
+      RepositorioPersonajes repo = RepositorioPersonajesReal();
+      var x = repo.obtenerVaritas(jsonObject);
+      x.match((l) => null, (r) {
+        expect(r.length, equals(1));
+      });
     });
   });
 }
