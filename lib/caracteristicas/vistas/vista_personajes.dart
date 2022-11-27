@@ -25,15 +25,17 @@ class ListaPersonajes extends StatelessWidget {
           title: Text(tipoDePersonaje)),
       body: Column(
         children: [
-          Expanded(child: ListView.builder(itemBuilder: (context, index) {
-            print(listaPersonajes[index]);
-            return ListTile(
-              leading: Text(listaPersonajes[index].imagen),
-              title: Text(listaPersonajes[index].nombre),
-              subtitle: Text(listaPersonajes[index].casa),
-              trailing: Text((index + 1).toString()),
-            );
-          }))
+          Expanded(
+              child: ListView.builder(
+                  itemCount: listaPersonajes.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: Text(listaPersonajes[index].imagen),
+                      title: Text(listaPersonajes[index].nombre),
+                      subtitle: Text(listaPersonajes[index].casa),
+                      trailing: Text((index + 1).toString()),
+                    );
+                  }))
         ],
       ),
     );
