@@ -47,6 +47,8 @@ class Evento {}
 
 class Creado extends Evento {}
 
+class VolverAlMenu extends Evento {}
+
 class SolicitarTodosPersonajes extends Evento {}
 
 class SolicitarPersonajesPorCasa extends Evento {
@@ -79,6 +81,10 @@ class BlocPotter extends Bloc<Evento, Estado> {
           respuestaPersonajes.getOrElse((l) => emit(ErrorAlCargarJson()));
       jsonHechizos =
           respuestaHechizos.getOrElse((l) => emit(ErrorAlCargarJson()));
+      emit(VerPaginaPrincipal());
+    });
+
+    on<VolverAlMenu>((event, emit) {
       emit(VerPaginaPrincipal());
     });
 

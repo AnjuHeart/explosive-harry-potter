@@ -1,4 +1,5 @@
 import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
+import 'package:explosive_harry_potter/caracteristicas/vistas/vista_personajes.dart';
 import 'package:explosive_harry_potter/caracteristicas/vistas/vista_principal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,14 +13,16 @@ class Aplicacion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) {
-      BlocPotter bloc = BlocPotter();
-      Future.delayed(const Duration(seconds: 2), (){
-        bloc.add(Creado());
-      });
-      return bloc;
-    },
-    child: const SelectorVista(),);
+    return BlocProvider(
+      create: (context) {
+        BlocPotter bloc = BlocPotter();
+        Future.delayed(const Duration(seconds: 2), () {
+          bloc.add(Creado());
+        });
+        return bloc;
+      },
+      child: const SelectorVista(),
+    );
   }
 }
 
@@ -33,8 +36,13 @@ class SelectorVista extends StatelessWidget {
       home: Builder(
         builder: ((context) {
           var estado = context.watch<BlocPotter>().state;
-          if(estado is VerPaginaPrincipal){
+          if (estado is VerPaginaPrincipal) {
             return const PaginaPrincipal();
+          }
+          if (estado is VerListaPeronajes) {
+            return ListaPersonajes(
+                tipoDePersonaje: estado.tipoPeronaje,
+                personajes: estado.personajes);
           }
           return const Scaffold(
             body: Center(child: Text("No implementado...")),

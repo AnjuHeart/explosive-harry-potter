@@ -1,10 +1,13 @@
+import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaginaPrincipal extends StatelessWidget {
   const PaginaPrincipal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var bloc = context.read<BlocPotter>();
     return Scaffold(
       body: Center(
         child: Column(
@@ -17,13 +20,35 @@ class PaginaPrincipal extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: () {}, child: const Text("Hechizos")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarTodosPersonajes());
+                    },
+                    child: const Text("Todos los Personajes")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Profesores")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarHechizos());
+                    },
+                    child: const Text("Hechizos")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Alumnos")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarStaff());
+                    },
+                    child: const Text("Profesores")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Varitas")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarAlumnos());
+                    },
+                    child: const Text("Alumnos")),
+                const SizedBox(width: 5),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarVaritas());
+                    },
+                    child: const Text("Varitas")),
               ],
             ),
             const SizedBox(height: 10),
@@ -32,13 +57,29 @@ class PaginaPrincipal extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: () {}, child: const Text("Griffindor")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarPersonajesPorCasa("Gryffindor"));
+                    },
+                    child: const Text("Gryffindor")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Slytherin")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarPersonajesPorCasa("Slytherin"));
+                    },
+                    child: const Text("Slytherin")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Hufflepuff")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarPersonajesPorCasa("Hufflepuff"));
+                    },
+                    child: const Text("Hufflepuff")),
                 const SizedBox(width: 5),
-                TextButton(onPressed: () {}, child: const Text("Ravenclaw")),
+                TextButton(
+                    onPressed: () {
+                      bloc.add(SolicitarPersonajesPorCasa("Ravenclaw"));
+                    },
+                    child: const Text("Ravenclaw")),
               ],
             ),
           ],
