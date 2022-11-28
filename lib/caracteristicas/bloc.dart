@@ -113,6 +113,7 @@ class BlocPotter extends Bloc<Evento, Estado> {
       Either<Problema, Set<Varita>> varitas =
           repositorioPersonajes.obtenerVaritas(jsonPersonajes);
       varitas.match((l) {
+        print("No mames");
         emit(ErrorAlFormarPersonajes());
       }, (r) {
         emit(VerVaritas(varitas: r));

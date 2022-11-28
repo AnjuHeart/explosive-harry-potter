@@ -27,8 +27,30 @@ class RepositorioPersonajesReal extends RepositorioPersonajes {
     try {
       Set<Varita> setVaritas = {};
       for (var personaje in jsonPersonajes) {
-        if (personaje["wand"]["wood"] != "") {
-          setVaritas.add(Varita.constructor(jsonElement: personaje));
+        String madera = "";
+        String nucleo = "";
+        String portador = "";
+        num largo = 0.0;
+
+        int largoMadera = personaje["wand"]["wood"].toString().trim().length;
+        largoMadera > 0
+            ? madera = personaje["wand"]["wood"].toString().trim()
+            : null;
+        int largoNucleo = personaje["wand"]["core"].toString().trim().length;
+        largoNucleo > 0
+            ? nucleo = personaje["wand"]["core"].toString().trim()
+            : null;
+
+        personaje["wand"]["length"] == null
+            ? null
+            : largo = personaje["wand"]["length"];
+        portador = personaje["name"].toString();
+        if (madera != "" || nucleo != "" || largo != 0.0) {
+          setVaritas.add(Varita.constructor(
+              madera: madera,
+              nucleo: nucleo,
+              portador: portador,
+              largo: largo));
         }
       }
       return Right(setVaritas);

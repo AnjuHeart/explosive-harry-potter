@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
 import 'package:explosive_harry_potter/dominio/registro_hechizos.dart';
 
@@ -25,7 +23,7 @@ class ListaHechizos extends StatelessWidget {
             bloc.add(VolverAlMenu());
           },
         ),
-        title: Text("Hechizos de Harry Potter"),
+        title: const Text("Hechizos de Harry Potter"),
       ),
       body: Column(
         children: [

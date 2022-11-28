@@ -2,6 +2,7 @@ import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
 import 'package:explosive_harry_potter/caracteristicas/vistas/vista_hechizos.dart';
 import 'package:explosive_harry_potter/caracteristicas/vistas/vista_personajes.dart';
 import 'package:explosive_harry_potter/caracteristicas/vistas/vista_principal.dart';
+import 'package:explosive_harry_potter/caracteristicas/vistas/vista_varitas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,6 +48,9 @@ class SelectorVista extends StatelessWidget {
           }
           if (estado is VerHechizos) {
             return ListaHechizos(hechizos: estado.hechizos);
+          }
+          if (estado is VerVaritas) {
+            return ListaVaritas(varitas: estado.varitas);
           }
           return const Scaffold(
             body: Center(child: Text("No implementado...")),
