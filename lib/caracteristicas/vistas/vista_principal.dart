@@ -13,9 +13,15 @@ class PaginaPrincipal extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Explosive Harry Potter"),
-            const SizedBox(height: 30),
-            const Text("Buscar por categoría..."),
+            Image.network(
+              "https://cdn.discordapp.com/attachments/1037900493088899092/1046612535765385286/explosivo.png",
+              width: 400,
+              height: 300,
+            ),
+            const Text(
+              "Buscar por categoría...",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +58,8 @@ class PaginaPrincipal extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            const Text("Buscar personajes por casa..."),
+            const Text("Buscar personajes por casa...",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
