@@ -30,7 +30,12 @@ class ListaPersonajes extends StatelessWidget {
                   itemCount: listaPersonajes.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      leading: Text(listaPersonajes[index].imagen),
+                      leading: listaPersonajes[index].imagen == ""
+                          ? const Text(
+                              "No tiene imagen",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          : Image.network(listaPersonajes[index].imagen),
                       title: Text(listaPersonajes[index].nombre),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
