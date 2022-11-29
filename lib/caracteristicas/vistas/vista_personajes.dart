@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
 import 'package:explosive_harry_potter/dominio/registro_personajes.dart';
 import 'package:flutter/material.dart';
@@ -31,11 +32,14 @@ class ListaPersonajes extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: listaPersonajes[index].imagen == ""
-                          ? const Text(
-                              "No tiene imagen",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          : Image.network(listaPersonajes[index].imagen),
+                          ? const Icon(Icons.error)
+                          : CachedNetworkImage(
+                              imageUrl: listaPersonajes[index].imagen,
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
                       title: Text(listaPersonajes[index].nombre),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
