@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:explosive_harry_potter/caracteristicas/bloc.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,12 @@ class PaginaPrincipal extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(
-              "https://cdn.discordapp.com/attachments/1037900493088899092/1046612535765385286/explosivo.png",
+            CachedNetworkImage(
+              imageUrl:
+                  "https://cdn.discordapp.com/attachments/1037900493088899092/1046612535765385286/explosivo.png",
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) =>
+                  const Center(child: Text("No puede cargar la imagen")),
               width: 400,
               height: 300,
             ),
