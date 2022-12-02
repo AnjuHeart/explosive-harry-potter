@@ -39,6 +39,9 @@ class Personaje {
     dynamic actoresAlternativos = jsonElement["alternate_actors"] ?? "";
     bool estaVivo = jsonElement["alive"] ?? false;
     String imagen = jsonElement["image"] ?? "";
+
+    imagen != "" ? imagen = imagen.replaceAll("herokuapp", "onrender") : null;
+
     return Personaje._(
         nombre,
         nombreAlternativo,
